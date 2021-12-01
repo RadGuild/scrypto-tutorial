@@ -31,12 +31,13 @@ provided examples, create the 6 soft links as shown here from
 the directories in your current radixdlt-scrypto installation.
 
 ```
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/sbor .
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/sbor-derive .
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/radix-engine .
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto .
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto-abi .
-ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto-derive .
+export scrypto_install=<your-radix-scrypto-install_dir>
+ln -s $scrypto_install/radixdlt-scrypto/sbor .
+ln -s $scrypto_install/radixdlt-scrypto/sbor-derive .
+ln -s $scrypto_install/radixdlt-scrypto/radix-engine .
+ln -s $scrypto_install/radixdlt-scrypto/scrypto .
+ln -s $scrypto_install/radixdlt-scrypto/scrypto-abi .
+ln -s $scrypto_install/radixdlt-scrypto/scrypto-derive .
 ```
 
 ### Optional Setup
