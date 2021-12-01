@@ -1,0 +1,13 @@
+// Revup command file for TokenCreator
+
+reset
+new-account -> account pubkey
+
+publish . -> package
+
+call-function $package TokenCreator new -> badge tokenRCT component
+
+call-method $component describe_resource $badge
+call-method $component describe_resource $tokenRCT
+show $component
+
