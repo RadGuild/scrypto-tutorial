@@ -1,0 +1,26 @@
+// Revup command file for TokenCreator
+
+reset
+new-account -> account pubkey
+
+publish . -> package
+
+call-function $package TokenCreator new -> minterBadge tokenRCT mutableBadge component
+
+show $minterBadge
+show $tokenRCT
+show $component
+show $mutableBadge
+show $account
+
+call-method $component mint_tokens
+
+show $tokenRCT
+show $component
+show $account
+
+call-method $component burn_badge 1,$mutableBadge
+
+show $mutableBadge
+show $component
+show $account
