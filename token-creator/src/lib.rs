@@ -30,7 +30,7 @@ blueprint! {
 
         pub fn describe_resource(&self, addr: Address) {
             // Send up the badge or token address to learn more about it.
-            // Of course you could just do "resim show $my_address" but,
+            // Of course you could just do "resim show $my_address" but
             // this shows how to get the metadata with Scrypto.
             let this_res_def = ResourceDef::from(addr);
             let metadata = this_res_def.metadata();
