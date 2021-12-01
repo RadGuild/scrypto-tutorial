@@ -1,0 +1,17 @@
+// Revup command file for Gumball Machine
+
+reset
+new-account -> account pubkey
+
+publish . -> package
+
+call-function $package GumballMachine new 0.5 -> tokenGUM component
+
+call-method $component get_price
+
+call-method $component buy_gumball 3,$tokenXRD
+
+show $component
+
+show $account
+
