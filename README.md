@@ -27,11 +27,12 @@ Radix Scrypto on github:  https://github.com/radixdlt/radixdlt-scrypto
 ## Setup
 
 In order to use the provided Cargo.toml files "as is" in the
-provided examples, create the 6 soft links as shown here from
-the directories in your current radixdlt-scrypto installation.
+provided examples, create the 6 soft links as shown below in
+the directory just above the one that contains this README.md file.
 
 ```
 export scrypto_install=<your-radixdlt-scrypto-install-dir>
+cd ..
 ln -s $scrypto_install/radixdlt-scrypto/sbor .
 ln -s $scrypto_install/radixdlt-scrypto/sbor-derive .
 ln -s $scrypto_install/radixdlt-scrypto/radix-engine .
