@@ -41,6 +41,8 @@ ln -s $scrypto_install/radixdlt-scrypto/scrypto-abi .
 ln -s $scrypto_install/radixdlt-scrypto/scrypto-derive .
 ```
 
+Of course you may handle this in some other way by simply editing the paths in the Cargo.toml files.
+
 ### Optional Setup
 
 Install the Revup tool from https://github.com/RadGuild/revup
