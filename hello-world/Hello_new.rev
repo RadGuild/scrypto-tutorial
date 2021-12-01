@@ -1,0 +1,15 @@
+// Revup command file for the Hello blueprint
+
+reset
+new-account -> account pubkey
+
+publish . -> package
+
+call-function $package Hello new -> tokenHT component
+
+call-method $component free_token
+
+show $component
+
+show $account
+

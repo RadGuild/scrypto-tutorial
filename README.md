@@ -24,6 +24,33 @@ This tutorial is based on the November 12, 2021 release of Scrypto.
 
 Radix Scrypto on github:  https://github.com/radixdlt/radixdlt-scrypto
 
+## Setup
+
+In order to use the provided Cargo.toml files "as is" in the
+provided examples, create the 6 soft links as shown here from
+the directories in your current radixdlt-scrypto installation.
+
+```
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/sbor .
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/sbor-derive .
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/radix-engine .
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto .
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto-abi .
+ln -s <your radix-scrypto-install-dir>/radixdlt-scrypto/scrypto-derive .
+```
+
+### Optional Setup
+
+Install the Revup tool from https://github.com/RadGuild/revup
+
+You can use the provided ".rev" files to build and run the components.
+
+For example:
+
+```
+revup -r Hello_new.rev
+```
+
 ## Going Forward
 
 The authors intend to update this Tutorial and the code examples as
