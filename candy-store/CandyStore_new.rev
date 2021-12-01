@@ -1,0 +1,48 @@
+// Revup command file for CandyStore
+
+reset
+new-account -> account pubkey
+
+publish . -> package
+
+call-function $package CandyStore new -> component
+// call-method $component get_price
+
+new-token-fixed 500 --name gumball --symbol GUM -> tokenGUM
+new-token-fixed 200 --name lollipop --symbol LOL -> tokenLOL
+
+call-method $component stock_candy 200,$tokenGUM 0.5
+call-method $component stock_candy 100,$tokenLOL 3.0
+
+show $component
+
+new-account -> account2 pubkey2
+set-default-account $account2 $pubkey2
+
+call-method $component menu
+
+call-method $component get_price $tokenGUM
+call-method $component get_price $tokenLOL
+
+call-method $component buy_candy $tokenLOL 5,$tokenXRD
+call-method $component buy_candy $tokenGUM 1,$tokenXRD
+
+show $account2
+
+set-default-account $account $pubkey
+
+call-method $component stock_candy 200,$tokenGUM 0.75
+call-method $component stock_candy 100,$tokenLOL 2.0
+
+set-default-account $account2 $pubkey2
+
+call-method $component get_price $tokenGUM
+call-method $component get_price $tokenLOL
+
+call-method $component buy_candy $tokenLOL 5,$tokenXRD
+call-method $component buy_candy $tokenGUM 1,$tokenXRD
+
+show $account2
+
+show $component
+
