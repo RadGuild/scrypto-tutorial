@@ -8,17 +8,17 @@ blueprint! {
     impl TokenCreator {
         pub fn new() -> (Component, Bucket) {
             // Create a badge with fixed supply of 1
-            let badge = ResourceBuilder::new()
+            let badge : Bucket = ResourceBuilder::new_fungible(DIVISIBILITY_NONE)
                 .metadata("name", "Access Badge")
                 .metadata("symbol", "TB")
                 .metadata("icon_url", "https://badge_website.com/icon.ico")
                 .metadata("url", "https://badge_website.com")
-                .new_badge_fixed(1);
+                .initial_supply_fungible(1);
             // Create tokens with fixed supply of 1 000 000 000
-            let tokens = ResourceBuilder::new()
+            let tokens: Bucket = ResourceBuilder::new_fungible(0)
                 .metadata("name", "Really Cool Token")
                 .metadata("symbol", "RCT")
-                .new_token_fixed(1_000_000_000);
+                .initial_supply_fungible(1_000_000_000);
             let component = Self {
                 token_vault: Vault::with_bucket(tokens)
             }
