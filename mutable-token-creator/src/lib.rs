@@ -14,20 +14,24 @@ blueprint! {
             // Create a mutable supply token and specify
             // the resource definition of the badge allowed to mint and burn.
             // Notice that new_token_mutable does not return a bucket but only a resource_definition.
-            let token_resource_def = ResourceBuilder::new()
+            let token_resource_def = ResourceBuilder::new_fungible(DIVISIBILITY_MAXIMUM)
                 .metadata("name", "Really Cool Token - but mutable")
                 .metadata("symbol", "RCTM")
-                .new_token_mutable(minter_badge.resource_def());
+                .flags(MINTABLE | BURNABLE)
+                .badge(minter_badge.resource_def(), MAY_MINT | MAY_BURN)
+                .no_initial_supply();
 
             // Now we can mint tokens
-            let tokens = token_resource_def.mint(1000, minter_badge.borrow());
+            let tokens = token_resource_def.mint(1000, minter_badge.present());
 
             // It's the same when creating mutable badges
-            let badge_resource_def = ResourceBuilder::new()
+            let badge_resource_def = ResourceBuilder::new_fungible(DIVISIBILITY_NONE)
                 .metadata("name", "Mutable Badge")
-                .new_badge_mutable(minter_badge.resource_def());
+                .flags(MINTABLE | BURNABLE)
+                .badge(minter_badge.resource_def(), MAY_MINT | MAY_BURN)
+                .no_initial_supply();
 
-            let badge = badge_resource_def.mint(1, minter_badge.borrow());
+            let badge = badge_resource_def.mint(1, minter_badge.present());
 
             let component = Self {
                 minter_badge: Vault::with_bucket(minter_badge),
@@ -43,7 +47,7 @@ blueprint! {
             let badge_bucket = self.minter_badge.take(1);
 
             // Burn the provided badge
-            badge_to_burn.burn(badge_bucket.borrow());
+            badge_to_burn.burn_with_auth(badge_bucket.present());
 
             // Put the badge back into its vault
             self.minter_badge.put(badge_bucket);
@@ -54,7 +58,7 @@ blueprint! {
             let badge_bucket = self.minter_badge.take(1);
 
             // Let's mint 100 RCTM
-            let bucket = self.token_vault.resource_def().mint(100, badge_bucket.borrow());
+            let bucket = self.token_vault.resource_def().mint(100, badge_bucket.present());
 
             // Put the badge back into its vault
             self.minter_badge.put(badge_bucket);
@@ -65,7 +69,7 @@ blueprint! {
 
         pub fn auth_burn_badge(&mut self, badge_to_burn: Bucket) {
             self.minter_badge.authorize(|badge| {
-                badge_to_burn.burn(badge);
+                badge_to_burn.burn_with_auth(badge);
             });
         }
 
