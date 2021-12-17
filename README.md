@@ -20,7 +20,7 @@ aka RadGuild on github: https://github.com/RadGuild
 
 ## Notes
 
-This tutorial is based on the November 12, 2021 release of Scrypto.
+This tutorial is based on the December 15th, 2021 release of Scrypto.
 
 Radix Scrypto on github:  https://github.com/radixdlt/radixdlt-scrypto
 
@@ -39,7 +39,9 @@ revup -r Hello_new.rev
 ## Going Forward
 
 The authors intend to update this Tutorial and the code examples as
-needed soon after the planned Alexandria release of Scrypto on Dec. 15th, 2021.
+Scrypto evolves. In addition new chapters featuring new examples that
+cover new capabilities will be added over time. Your support will
+help motivate us to continue with this work.
 
 ## Acknowledgements
 
@@ -52,7 +54,7 @@ The authors thank Charlie Cooper and Alanci for corrections.
 ## Support
 
 This tutorial is and will remain free for any use other than
-copying and posting of the contents without acknowledgement.
+copying and pasting of the contents without acknowledgement.
 
 You can support the authors with tips using XRD or other tokens
 on the Radix protocol mainnet.

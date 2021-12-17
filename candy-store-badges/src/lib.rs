@@ -21,9 +21,9 @@ blueprint! {
 
         pub fn new() -> (Bucket, Component) {
             // Create the badge
-            let badge_bucket = ResourceBuilder::new()
+            let badge_bucket = ResourceBuilder::new_fungible(DIVISIBILITY_NONE)
                 .metadata("name", "Store Owner's Badge")
-                .new_badge_fixed(1);
+                .initial_supply_fungible(1);
             let component = Self {
                 candy_vaults: HashMap::new(),
                 collected_xrd: Vault::new(RADIX_TOKEN),
@@ -43,8 +43,8 @@ blueprint! {
             // We can write assertions. If it fails, the whole transaction is safely rolled back.
             // Here, we make sure that the provided bucket does not contain XRD
             // and that the price is greater than zero.
-            scrypto_assert!( candy_addr != self.collected_xrd.resource_address(), "cannot stock XRD as candy");
-            scrypto_assert!(new_price > 0.into(), "new price must be a positive value");
+            assert!( candy_addr != self.collected_xrd.resource_address(), "cannot stock XRD as candy");
+            assert!(new_price > 0.into(), "new price must be a positive value");
 
             // Try to find the vault with candy_addr as key.
             // If it does not exist, it creates a new empty vault.
@@ -59,7 +59,7 @@ blueprint! {
 
         pub fn get_price(&self, candy_addr: Address) {
             // Make sure the candy_addr is not XRD
-            scrypto_assert!( candy_addr != self.collected_xrd.resource_address(), "XRD is priceless");
+            assert!( candy_addr != self.collected_xrd.resource_address(), "XRD is priceless");
 
             // Display the price if present, display error otherwise
             match self.prices.get(&candy_addr) {
