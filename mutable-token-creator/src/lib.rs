@@ -8,8 +8,8 @@ blueprint! {
 
     impl TokenCreator {
         pub fn new() -> (Component, Bucket) {
-            let minter_badge = ResourceBuilder::new()
-                .new_badge_fixed(1);
+            let minter_badge : Bucket = ResourceBuilder::new_fungible(DIVISIBILITY_NONE)
+                .initial_supply_fungible(1);
 
             // Create a mutable supply token and specify
             // the resource definition of the badge allowed to mint and burn.
